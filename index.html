@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Fito Rifqi Dwi Fatoni | Fitolab</title>
+  <meta name="description" content="Personal space of Fito Rifqi Dwi Fatoni • Developer & Builder">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --text-main: #ffffff;
+      --text-sub: rgba(255, 255, 255, 0.82);
+      --text-muted: rgba(255, 255, 255, 0.55);
+      
+      /* Liquid Glass Ultra-Sheer (Hampir Transparan) */
+      --glass-bg: rgba(255, 255, 255, 0.025);
+      --glass-bg-hover: rgba(255, 255, 255, 0.06);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-border-hover: rgba(255, 255, 255, 0.28);
+      --glass-specular: rgba(255, 255, 255, 0.3);
+      --glass-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: #06090e;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: clamp(16px, 3vh, 36px) 16px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Video Background & Soft Atmospheric Vignette */
+    .video-background-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bg-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.1) brightness(0.92);
+      transform: scale(1.02);
+    }
+
+    .vignette-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center 35%, rgba(6, 9, 15, 0.25) 0%, rgba(4, 7, 12, 0.72) 100%),
+                  linear-gradient(180deg, rgba(6, 9, 14, 0.2) 0%, rgba(5, 8, 13, 0.65) 100%);
+      backdrop-filter: blur(1.5px);
+      -webkit-backdrop-filter: blur(1.5px);
+    }
+
+    /* Compact & Balanced Mobile Container */
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 410px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(14px, 2vh, 18px);
+      animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header Profile - Ultra Sheer Liquid Glass */
+    .header-card {
+      width: 100%;
+      padding: clamp(20px, 3vh, 28px) clamp(18px, 4vw, 24px) clamp(16px, 2.5vh, 22px);
+      border-radius: 26px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      border: 1px solid var(--glass-border);
+      box-shadow: inset 0 1px 1px var(--glass-specular), var(--glass-shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .header-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      margin-bottom: clamp(12px, 1.8vh, 16px);
+    }
+
+    .avatar {
+      width: clamp(72px, 12vw, 84px);
+      height: clamp(72px, 12vw, 84px);
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.35), 0 8px 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: clamp(30px, 5vw, 36px);
+      font-style: italic;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 0 2px 12px rgba(255, 255, 255, 0.35);
+    }
+
+    .pulse-dot {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #34d399;
+      border: 2px solid rgba(6, 9, 14, 0.85);
+      box-shadow: 0 0 10px #34d399;
+    }
+
+    .profile-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 5.2vw, 1.95rem);
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      color: #ffffff;
+      margin-bottom: 6px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .profile-tagline {
+      font-size: clamp(0.78rem, 2.3vw, 0.84rem);
+      font-weight: 400;
+      color: var(--text-sub);
+      line-height: 1.45;
+      max-width: 290px;
+      margin-bottom: 12px;
+    }
+
+    .domain-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+    }
+
+    /* Sections */
+    .section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .section-heading {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding-left: 6px;
+    }
+
+    /* Liquid Glass Cards (Ultra-Sheer & Compact) */
+    .glass-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: clamp(12px, 1.8vh, 15px) 16px;
+      border-radius: 18px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      border: 1px solid var(--glass-border);
+      box-shadow: inset 0 1px 1px var(--glass-specular), var(--glass-shadow);
+      color: var(--text-main);
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .glass-card:hover {
+      background: var(--glass-bg-hover);
+      border-color: var(--glass-border-hover);
+      transform: translateY(-2px);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.35), 0 12px 28px -4px rgba(0, 0, 0, 0.4);
+    }
+
+    .glass-card:active {
+      transform: translateY(0);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    /* Featured Portfolio Highlight */
+    .glass-card.featured {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.4), 0 10px 26px rgba(0, 0, 0, 0.3);
+    }
+
+    .glass-card.featured:hover {
+      border-color: rgba(255, 255, 255, 0.38);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 100%);
+    }
+
+    .card-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #ffffff;
+      transition: all 0.25s ease;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.18);
+    }
+
+    .glass-card:hover .card-icon {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 255, 255, 0.24);
+    }
+
+    .card-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .title-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+    }
+
+    .status-pill {
+      font-size: 0.64rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: rgba(251, 191, 36, 0.12);
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .status-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #fbbf24;
+      box-shadow: 0 0 6px #fbbf24;
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
+    .card-desc {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-arrow {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .glass-card:hover .card-arrow {
+      color: #ffffff;
+      transform: translate(2px, -2px);
+    }
+
+    footer {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(0.82rem, 2.5vw, 0.88rem);
+      color: var(--text-muted);
+      margin-top: 4px;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+  <!-- Ambient Serene Video Background -->
+  <div class="video-background-wrap">
+    <video class="bg-video" autoplay muted loop playsinline poster="poster.jpg">
+      <source src="bg.mp4" type="video/mp4">
+    </video>
+    <div class="vignette-overlay"></div>
+  </div>
+
+  <div class="container">
+    <!-- Header Profile Card -->
+    <header class="header-card">
+      <div class="avatar-wrapper">
+        <div class="avatar">F</div>
+        <div class="pulse-dot" title="Active"></div>
+      </div>
+      <h1 class="profile-title">Fito Rifqi Dwi Fatoni</h1>
+      <p class="profile-tagline">Designing quiet digital spaces for sharp focus, bold thoughts, and inspired work.</p>
+      <div class="domain-badge">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        fitolab.online
+      </div>
+    </header>
+
+    <!-- Top Featured Link (Portfolio) -->
+    <div class="section">
+      <div class="section-heading">Featured Space</div>
+      <a href="#portfolio" class="glass-card featured" onclick="alert('Portfolio sedang dalam tahap pengerjaan! Stay tuned.')">
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="title-row">
+            <span class="card-title">My Portfolio</span>
+            <span class="status-pill"><span class="status-dot"></span>In Progress</span>
+          </div>
+          <div class="card-desc">Selected projects, craft, and experiments</div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </a>
+    </div>
+
+    <!-- Social & Professional Links (Telegram Removed) -->
+    <div class="section">
+      <div class="section-heading">Connect & Socials</div>
+
+      <!-- GitHub -->
+      <a href="https://github.com/onlydayone" class="glass-card" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">GitHub</div>
+          <div class="card-desc">@onlydayone</div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </a>
+
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/fitorifqi/" class="glass-card" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon" style="color: #60a5fa;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">LinkedIn</div>
+          <div class="card-desc">Fito Rifqi Dwi Fatoni</div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://instagram.com/fitordf" class="glass-card" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon" style="color: #f472b6;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Instagram</div>
+          <div class="card-desc">@fitordf</div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </a>
+    </div>
+
+    <footer>
+      Where dreams rise through the silence • fitolab.online
+    </footer>
+  </div>
+</body>
+</html>
