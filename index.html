@@ -198,7 +198,7 @@
         border-radius: 50%;
         background: #34d399;
         border: 2px solid rgba(6, 9, 14, 0.85);
-        box-shadow: 0 0 10px #34d399;
+        box-shadow: 0 0 8px rgba(52, 211, 153, 0.7);
       }
 
       .profile-title {
@@ -224,20 +224,29 @@
       .domain-badge {
         display: inline-flex;
         align-items: center;
-        gap: 5px;
+        gap: 6px;
         padding: 4px 12px;
         border-radius: 100px;
-        background: rgba(255, 255, 255, 0.07);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.16);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
         font-family: var(--font-frieren);
         font-size: 0.68rem;
-        font-weight: 600;
+        font-weight: 500;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--text-sub);
+        text-decoration: none;
+        transition: all 0.25s ease;
+      }
+
+      .domain-badge:hover {
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.35);
+        transform: translateY(-1px);
       }
 
       /* Sections */
@@ -432,20 +441,56 @@
       }
 
       footer {
-        font-family: var(--font-serif);
-        font-style: italic;
-        font-size: clamp(0.82rem, 2.5vw, 0.88rem);
-        color: var(--text-muted);
-        margin-top: 4px;
-        text-align: center;
-        letter-spacing: 0.02em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 6px;
         padding: 6px 18px;
         border-radius: 100px;
         background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        transition: all 0.25s ease;
+      }
+
+      footer:hover {
+        background: rgba(255, 255, 255, 0.07);
+        border-color: rgba(255, 255, 255, 0.16);
+      }
+
+      .footer-quote {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(0.8rem, 2.4vw, 0.86rem);
+        color: var(--text-muted);
+        letter-spacing: 0.02em;
+        transition: color 0.25s ease;
+      }
+
+      footer:hover .footer-quote {
+        color: var(--text-sub);
+      }
+
+      .footer-sep {
+        color: rgba(255, 255, 255, 0.2);
+        font-size: 0.75rem;
+      }
+
+      .footer-brand {
+        font-family: var(--font-frieren);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.25s ease;
+      }
+
+      footer:hover .footer-brand {
+        color: var(--text-sub);
       }
 
       @media (max-width: 640px) {
@@ -519,7 +564,12 @@
           Designing quiet digital spaces for sharp focus, bold thoughts, and
           inspired work.
         </p>
-        <div class="domain-badge">
+        <a
+          href="https://fitolab.online"
+          class="domain-badge"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <svg
             width="10"
             height="10"
@@ -534,7 +584,7 @@
             />
           </svg>
           fitolab.online
-        </div>
+        </a>
       </header>
 
       <!-- Top Featured Link (Portfolio) -->
@@ -570,6 +620,41 @@
             <div class="card-desc">
               Selected projects, craft, and experiments
             </div>
+          </div>
+          <div class="card-arrow">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M7 17L17 7M7 7h10v10" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- Chlorine Store -->
+        <!-- ponytail: static link card; add dynamic inventory preview or status badge when store API is available -->
+        <a
+          href="https://store.fitolab.online"
+          class="glass-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="card-icon" style="overflow: hidden; padding: 0;">
+            <img
+              src="chlorine-logo.webp"
+              alt="Chlorine Store Logo"
+              style="width: 100%; height: 100%; object-fit: cover;"
+            />
+          </div>
+          <div class="card-body">
+            <div class="card-title">Chlorine Store</div>
+            <div class="card-desc">store.fitolab.online</div>
           </div>
           <div class="card-arrow">
             <svg
@@ -702,7 +787,11 @@
         </a>
       </div>
 
-      <footer>Where dreams rise through the silence • fitolab.online</footer>
+      <footer>
+        <span class="footer-quote">Where dreams rise through the silence</span>
+        <span class="footer-sep">•</span>
+        <a href="https://fitolab.online" class="footer-brand">fitolab.online</a>
+      </footer>
     </div>
   </body>
 </html>
